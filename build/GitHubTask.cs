@@ -10,6 +10,5 @@ public sealed class GitHubTask : AsyncFrostingTask<BuildContext>
     public override Task RunAsync(BuildContext context)
         => context.GitHubActions().Commands.UploadArtifact(
             context.File("./LICENSE"),
-            context.Environment.Platform.Family.ToString("F")
-            );
+            context.Environment.Platform.Family.ToString("F"));
 }
