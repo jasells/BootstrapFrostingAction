@@ -7,7 +7,6 @@ on:
       - main
       - develop
       - hotfix/*
-- 
 env:
     BuildProject: "build/Build.csproj"
 
@@ -33,7 +32,7 @@ jobs:
 
       - name: Create Cake Boostrapper script
         run: |
-          echo 'DotNetRun("${{ env.buildProj }}", "-- $args");' > build.cake
+          echo 'DotNetRun("${{ env.BuildProject }}", "-- $args");' > build.cake
 
       - name: Run Cake script
         uses: cake-build/cake-action@v2
