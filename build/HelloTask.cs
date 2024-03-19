@@ -9,7 +9,11 @@ public sealed class HelloTask : FrostingTask<BuildContext>
 
         foreach (var arg in context.Arguments.GetArguments())
         {
-            context.Log.Information($"{arg.Key}:{arg.Value}\n");
+            string val = "";
+
+            foreach (var item in arg.Value) { val += item; }
+
+            context.Log.Information($"{arg.Key}:{val}\n");
         }
     }
 }
