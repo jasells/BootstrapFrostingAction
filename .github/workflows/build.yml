@@ -36,7 +36,7 @@ jobs:
         uses: cake-build/cake-action@v2
         with:
           cake-version: 4.0.0
-          target: Github-Actions
+          target: "Github-Actions"
           arguments: |
                 name: value
                 arg1: arg1val
