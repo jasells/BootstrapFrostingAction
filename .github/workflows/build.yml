@@ -30,9 +30,13 @@ jobs:
 
       - name: Create Script Boostrapper
         run: |
-          echo 'DotNetRun("build/Build.csproj", "--target=GitHub-Actions");' > build.cake
+          echo 'DotNetRun("build/Build.csproj", "-- $args");' > build.cake
 
       - name: Run Cake script
         uses: cake-build/cake-action@v2
         with:
           cake-version: 4.0.0
+          target: Github-Actions
+          arguments: |
+                name: value
+                agr1: arg1val
