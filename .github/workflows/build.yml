@@ -1,0 +1,37 @@
+name: Build
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+      - develop
+      - hotfix/*
+
+jobs:
+  build:
+    name: Build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+    steps:
+      - name: Get the sources
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Create Script Boostrapper
+        run: |
+          echo 'DotNetRun("build/Build.csproj", "--target=GitHub-Actions");' > build.cake
+
+      - name: Run Cake script
+        uses: cake-build/cake-action@v2
+        with:
+          cake-version: 4.0.0
