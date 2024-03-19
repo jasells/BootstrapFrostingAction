@@ -30,7 +30,7 @@ jobs:
 
       - name: Create Cake Boostrapper script
         run: |
-          echo 'DotNetRun("build/Build.csproj", ProcessArgumentBuild.FromStrings($args));' > build.cake
+          echo 'DotNetRun("build/Build.csproj", Cake.Core.IO.ProcessArgumentBuilder.FromStrings($args));' > build.cake
 
       - name: Run Cake script
         uses: cake-build/cake-action@v2
