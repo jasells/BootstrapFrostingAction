@@ -1,7 +1,7 @@
 ﻿namespace Build;
 
 [TaskName("Default")]
-[IsDependentOn(typeof(WorldTask))]
+[IsDependentOn(typeof(GitHubTask))]
 public class DefaultTask : FrostingTask
 {
 }
