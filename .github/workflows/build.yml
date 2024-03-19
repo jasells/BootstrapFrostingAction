@@ -28,7 +28,7 @@ jobs:
         with:
           global-json-file: global.json
 
-      - name: Create Script Boostrapper
+      - name: Create Cake Boostrapper script
         run: |
           echo 'DotNetRun("build/Build.csproj", "-- $args");' > build.cake
 
@@ -39,4 +39,4 @@ jobs:
           target: Github-Actions
           arguments: |
                 name: value
-                agr1: arg1val
+                arg1: arg1val
