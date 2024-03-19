@@ -28,9 +28,9 @@ jobs:
         with:
           global-json-file: global.json
 
-      - name: Create Cake Boostrapper script
-        run: |
-          echo 'DotNetRun("build/Build.csproj", "-- $args");' > build.cake
+      # - name: Create Cake Boostrapper script
+      #   run: |
+      #     echo 'DotNetRun("build/Build.csproj", "-- $args");' > build.cake
 
       - name: Run Cake script
         uses: cake-build/cake-action@v2
