@@ -13,8 +13,6 @@ public sealed class WorldTask : AsyncFrostingTask<BuildContext>
             await Task.Delay(1500);
         }
 
-        context.Log.Information
-
         context.Log.Information("World");
     }
 }
