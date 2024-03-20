@@ -9,6 +9,7 @@ on:
       - hotfix/*
 env:
     BuildProject: "build/Build.csproj"
+    BuildArgs: "--target=Github-Actions --testArg=testVal"
 
 jobs:
   build:
@@ -32,13 +33,13 @@ jobs:
 
       - name: Create Cake Boostrapper script
         run: |
-          echo 'DotNetRun("${{ env.BuildProject }}", "-- $args");' > build.cake
+          echo 'DotNetRun("${{ env.BuildProject }}", "${{ env.BuildArgs }}");' > build.cake
 
       - name: Run Cake script
         uses: cake-build/cake-action@v2
         with:
           cake-version: 4.0.0
           target: "Github-Actions"
-          arguments: |
-                name: value
-                arg1: arg1val
+          # arguments: |
+          #       name: value
+          #       arg1: arg1val
