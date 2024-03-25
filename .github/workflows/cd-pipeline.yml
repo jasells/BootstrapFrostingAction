@@ -1,20 +1,31 @@
-name: Build
+name: Deploy pipeline
 on:
   workflow_dispatch:
-  pull_request:
-  push:
-    branches:
-      - main
-      - develop
-      - hotfix/*
+
+  # pull_request:
+  # push:
+  #   branches:
+  #     - main
+  #     - develop
+  #     - hotfix/*
+
+  workflow_run:
+    branches: 
+        - event-testing
+    workflows:
+        - Build
+    types:
+        - completed
+
+
 env:
     BuildProject: "build/Build.csproj"
     BuildArgs: "--target=Github-Actions --testArg=testVal"
-    BuildVersion: "default"
+
 
 jobs:
   build:
-    name: Build-Job
+    name: Deploy
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -27,20 +38,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: find files
+      - name: display Build vars
         shell: pwsh
         run: |
-            $packageFile = dir -Path "artifacts" -Filter *task*.* 
-            Write-Output $packageFile
-            Write-Outout "first- " + $packageFile.First
-
-      - name: set output
-        shell: pwsh
-        run: |
-            echo "original BuildVersion = " $env:BuildVersion 
-            echo "BuildVersion=1.2.3" >> $GITHUB_ENV
-            echo "new BuildVersion = " $env:BuildVersion 
-            
+            Write-Outout "build.env.BuildProject - " + ${{ github.event.workflow_run.env }}
 
       # - name: Install .NET SDK
       #   uses: actions/setup-dotnet@v4
