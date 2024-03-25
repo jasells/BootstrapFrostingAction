@@ -16,7 +16,7 @@ jobs:
   build:
     name: Build-Job
     runs-on: ${{ matrix.os }}
-    outputs: ${{ steps.set_version.version }}
+    #outputs: ${{ steps.set_version.version }}
     strategy:
       fail-fast: false
       matrix:
