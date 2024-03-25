@@ -41,6 +41,8 @@ jobs:
       - name: display Build vars
         shell: pwsh
         run: |
+            Write-Output "workflow_run.event = " ${{ github.event.workflow_run.event }}
+            Write-Output "workflow_run.branch = " ${{ github.event.workflow_run.head_branch }}
             Write-Output "build.env.BuildProject = " ${{ github.event.workflow_run.env.BuildProject }}
 
       # - name: Install .NET SDK
