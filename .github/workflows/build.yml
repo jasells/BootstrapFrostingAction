@@ -27,12 +27,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: find files
-        shell: pwsh
-        run: |
-            $packageFile = dir -Path "artifacts" -Filter *task*.* 
-            Write-Output $packageFile
-            Write-Outout "first- " + $packageFile.First
+      # - name: find files
+      #   shell: pwsh
+      #   run: |
+      #       $packageFile = dir -Path "artifacts" -Filter *task*.* 
+      #       Write-Output $packageFile
+      #       Write-Outout "first- " + $packageFile.First
 
       - name: set output
         shell: pwsh
