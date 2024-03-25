@@ -4,11 +4,11 @@ using Cake.Common.IO;
 namespace Build;
 
 [TaskName("GitHub-Actions")]
-[IsDependentOn(typeof(DefaultTask))]
+[IsDependentOn(typeof(WorldTask))]
 public sealed class GitHubTask : AsyncFrostingTask<BuildContext>
 {
     public override Task RunAsync(BuildContext context)
         => context.GitHubActions().Commands.UploadArtifact(
-            context.File("./LICENSE"),
+            context.File("./build.cake"),
             context.Environment.Platform.Family.ToString("F"));
 }

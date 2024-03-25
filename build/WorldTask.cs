@@ -1,4 +1,6 @@
-﻿[TaskName("World")]
+﻿using Cake.Core.IO;
+
+[TaskName("World")]
 [IsDependentOn(typeof(HelloTask))]
 public sealed class WorldTask : AsyncFrostingTask<BuildContext>
 {
