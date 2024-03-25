@@ -16,6 +16,7 @@ jobs:
   build:
     name: Build-Job
     runs-on: ${{ matrix.os }}
+    outputs: ${{ steps.set_version.version }}
     strategy:
       fail-fast: false
       matrix:
@@ -35,11 +36,21 @@ jobs:
       #       Write-Outout "first- " + $packageFile.First
 
       - name: set output
+        id: set_version
         shell: pwsh
         run: |
             Write-Output "original BuildVersion = " $env:BuildVersion 
             $env:BuildVersion = "1.2.3" #Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
             Write-Output "new BuildVersion = " $env:BuildVersion 
+            #$steps.set_version.version = "3.4.5"
+            Write-Output "::set-output name=version::$env:BuildVersion"
+
+      - name: Repo Dispatch (event)
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          event-type: my-event
+          client-payload: '{"version": "${{ steps.set_version.outputs.version }}, "runId":"${{ github.event.workflow_run.id }}"}'
             
 
       # - name: Install .NET SDK
