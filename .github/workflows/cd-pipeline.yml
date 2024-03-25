@@ -41,7 +41,7 @@ jobs:
       - name: display Build vars
         shell: pwsh
         run: |
-            Write-Outout "build.env.BuildProject - " + ${{ github.event.workflow_run.env }}
+            Write-Output "build.env.BuildProject - " + ${{ github.event.workflow_run.env }}
 
       # - name: Install .NET SDK
       #   uses: actions/setup-dotnet@v4
