@@ -37,9 +37,9 @@ jobs:
       - name: set output
         shell: pwsh
         run: |
-            Write-Output "original BuildVersion = " + $env:BuildVersion 
-            Write-Output "BuildVersion=1.2.3" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
-            Write-Output "new BuildVersion = " + $env:BuildVersion 
+            Write-Output "original BuildVersion = " $env:BuildVersion 
+            $env:BuildVersion = "1.2.3" #Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+            Write-Output "new BuildVersion = " $env:BuildVersion 
             
 
       # - name: Install .NET SDK
